@@ -11,6 +11,7 @@ import { configureStore } from './config/configureStore'
 import { runSaga } from './config/combineMiddlewares'
 // import { RootErrorBoundary } from './common/components/RootErrorBoundary'
 
+import Header from './common/components/Header'
 import WeatherDetails from './details'
 import Favorites from './favorites'
 
@@ -24,6 +25,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <Provider store={ store }>
+        <Header />
         { /*<RootErrorBoundary>*/ }
         <Switch>
           <Route exact path="/" component={ WeatherDetails } />
