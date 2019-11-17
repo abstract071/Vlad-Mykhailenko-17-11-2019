@@ -1,0 +1,7 @@
+export default {
+  TRIGGER: 'TRIGGER',
+  REQUEST: 'REQUEST',
+  SUCCESS: 'SUCCESS',
+  FAILURE: 'FAILURE',
+  FULFILL: 'FULFILL'
+}

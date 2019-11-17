@@ -1,0 +1,9 @@
+import PREFIXES from '../../actionTypePrefixes'
+
+const NAMESPACE = 'FAVORITES'
+
+export const XXX_TRIGGER = `${PREFIXES.TRIGGER}/${NAMESPACE}:XXX`
+export const XXX_REQUEST = `${PREFIXES.REQUEST}/${NAMESPACE}:XXX`
+export const XXX_SUCCESS = `${PREFIXES.SUCCESS}/${NAMESPACE}:XXX`
+export const XXX_FAILURE = `${PREFIXES.FAILURE}/${NAMESPACE}:XXX`
+export const XXX_FULFILL = `${PREFIXES.FULFILL}/${NAMESPACE}:XXX`
