@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Vlad-Mykhailenko-17-11-2019/static/css/main.75b098f6.chunk.css",
-    "main.js": "/Vlad-Mykhailenko-17-11-2019/static/js/main.b5c2de5f.chunk.js",
-    "main.js.map": "/Vlad-Mykhailenko-17-11-2019/static/js/main.b5c2de5f.chunk.js.map",
+    "main.js": "/Vlad-Mykhailenko-17-11-2019/static/js/main.e61e0def.chunk.js",
+    "main.js.map": "/Vlad-Mykhailenko-17-11-2019/static/js/main.e61e0def.chunk.js.map",
     "runtime-main.js": "/Vlad-Mykhailenko-17-11-2019/static/js/runtime-main.2b4a3fba.js",
     "runtime-main.js.map": "/Vlad-Mykhailenko-17-11-2019/static/js/runtime-main.2b4a3fba.js.map",
     "static/js/2.09ab01bf.chunk.js": "/Vlad-Mykhailenko-17-11-2019/static/js/2.09ab01bf.chunk.js",
     "static/js/2.09ab01bf.chunk.js.map": "/Vlad-Mykhailenko-17-11-2019/static/js/2.09ab01bf.chunk.js.map",
     "index.html": "/Vlad-Mykhailenko-17-11-2019/index.html",
-    "precache-manifest.5a1c4183e2bee72164c3ff24a5d68bd5.js": "/Vlad-Mykhailenko-17-11-2019/precache-manifest.5a1c4183e2bee72164c3ff24a5d68bd5.js",
+    "precache-manifest.48b476057c782f4ac0485f2126d3bf95.js": "/Vlad-Mykhailenko-17-11-2019/precache-manifest.48b476057c782f4ac0485f2126d3bf95.js",
     "service-worker.js": "/Vlad-Mykhailenko-17-11-2019/service-worker.js",
     "static/css/main.75b098f6.chunk.css.map": "/Vlad-Mykhailenko-17-11-2019/static/css/main.75b098f6.chunk.css.map",
     "static/media/weather.jpg": "/Vlad-Mykhailenko-17-11-2019/static/media/weather.973322d6.jpg"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.2b4a3fba.js",
     "static/js/2.09ab01bf.chunk.js",
     "static/css/main.75b098f6.chunk.css",
-    "static/js/main.b5c2de5f.chunk.js"
+    "static/js/main.e61e0def.chunk.js"
   ]
 }
