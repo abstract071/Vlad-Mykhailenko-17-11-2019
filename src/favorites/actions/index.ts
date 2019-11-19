@@ -1,8 +1,9 @@
-import * as xxxTypes from '../constants'
+import * as favoritesTypes from '../constants'
 
 
-export function xxx() {
+export function getLocationsConditions( payload: any ) {
   return {
-    type: xxxTypes.XXX_TRIGGER
+    type: favoritesTypes.GET_LOCATIONS_CONDITIONS_TRIGGER,
+    payload
   }
 }

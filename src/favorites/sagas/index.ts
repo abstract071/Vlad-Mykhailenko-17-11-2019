@@ -1,35 +1,42 @@
 import {
   put,
   call,
+  all,
   takeLatest
 } from 'redux-saga/effects'
 import axios from 'axios'
 
 import { api } from '../../config/api'
 
-import * as xxxTypes from '../constants'
+import * as favoritesTypes from '../constants'
 
 
-export function* xxxSaga( action: any ) {
+export function* getLocationsConditionsSaga( action: any ) {
   try {
-    yield put( { type: xxxTypes.XXX_REQUEST } )
-    console.log( action )
-    const response = yield call( axios.post, api.xxx, action.payload )
-    console.log( response )
-    yield put( { type: xxxTypes.XXX_SUCCESS, payload: response } )
+    yield put( { type: favoritesTypes.GET_LOCATIONS_CONDITIONS_REQUEST } )
+    const config = {
+      params: {
+        apikey: process.env.REACT_APP_ACCU_WEATHER_KEY,
+        language: 'en-us'
+      }
+    }
+    const allArgs = action.payload.reduce( ( acc: any, cur: any ) => ( { ...acc, [cur.locationName]: call( axios.get, api.conditions( cur.locationKey ), config ) } ), {} )
+    const responses = yield all( allArgs )
+    const transformedResponses = action.payload.map( ( { locationName }: any ) => ( { locationName, ...responses[locationName].data[0] } ) )
+    yield put( { type: favoritesTypes.GET_LOCATIONS_CONDITIONS_SUCCESS, payload: transformedResponses } )
   } catch ( error ) {
     if ( error.response ) {
-      yield put( { type: xxxTypes.XXX_FAILURE, payload: error.response.data } )
+      yield put( { type: favoritesTypes.GET_LOCATIONS_CONDITIONS_FAILURE, payload: error.response.data } )
     }
   } finally {
-    yield put( { type: xxxTypes.XXX_FULFILL } )
+    yield put( { type: favoritesTypes.GET_LOCATIONS_CONDITIONS_FULFILL } )
   }
 }
 
-export function* watchxxxingSaga() {
-  yield takeLatest( xxxTypes.XXX_TRIGGER, xxxSaga )
+export function* watchGettingLocationsConditionsSaga() {
+  yield takeLatest( favoritesTypes.GET_LOCATIONS_CONDITIONS_TRIGGER, getLocationsConditionsSaga )
 }
 
 export default [
-  watchxxxingSaga()
+  watchGettingLocationsConditionsSaga()
 ]

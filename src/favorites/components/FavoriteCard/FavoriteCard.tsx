@@ -3,8 +3,6 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 
-import moment from 'moment'
-
 import {
   makeStyles,
   createStyles,
@@ -14,7 +12,10 @@ import {
 
 const useStyles = makeStyles( ( theme: Theme ) =>
   createStyles( {
-    dailyForecastCardContent: {
+    favoriteCard: {
+      margin: theme.spacing( 1 )
+    },
+    favoriteCardContent: {
       textAlign: 'center',
       padding: theme.spacing( 2 ),
       '&:last-child': {
@@ -24,21 +25,24 @@ const useStyles = makeStyles( ( theme: Theme ) =>
   } )
 )
 
-const DailyWeatherCard: React.FC<any> = ( { forecast }: any ) => {
+const FavoriteCard: React.FC<any> = ( { conditions }: any ) => {
   const classes = useStyles()
 
   return (
-    <Card>
-      <CardContent className={ classes.dailyForecastCardContent }>
+    <Card className={ classes.favoriteCard }>
+      <CardContent className={ classes.favoriteCardContent }>
         <Typography variant="h6">
-          { moment( forecast.Date ).format( 'ddd' ) }
+          { conditions.locationName }
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-          { `${forecast.Temperature.Minimum.Value} - ${forecast.Temperature.Maximum.Value} C` }
+          { `${conditions.Temperature.Metric.Value} C` }
+        </Typography>
+        <Typography variant="body2" color="textSecondary" component="p">
+          { conditions.WeatherText }
         </Typography>
       </CardContent>
     </Card>
   )
 }
 
-export default DailyWeatherCard
+export default FavoriteCard

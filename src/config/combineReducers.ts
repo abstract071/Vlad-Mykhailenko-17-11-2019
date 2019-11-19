@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
 
-import { xxxReducer } from '../details/reducers'
+import { weatherDetailsReducer } from '../details/reducers'
+import { favoritesReducer } from '../favorites/reducers'
 
 
 export default combineReducers( {
-  xxx: xxxReducer
+  weatherDetails: weatherDetailsReducer,
+  favorites: favoritesReducer
 } )

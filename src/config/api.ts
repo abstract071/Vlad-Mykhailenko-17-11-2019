@@ -1,5 +1,8 @@
-const ACCU_WEATHER_API_URL = 'http://some.com/api/v1'
+const ACCU_WEATHER_API_URL = 'http://dataservice.accuweather.com'
 
 export const api = {
-  xxx: `${ACCU_WEATHER_API_URL}/`
+  autocomplete: `${ACCU_WEATHER_API_URL}/locations/v1/cities/autocomplete`,
+  locationByKey: ( locationKey: string ) => `${ACCU_WEATHER_API_URL}/locations/v1/${locationKey}`,
+  forecast5days: ( locationKey: string ) => `${ACCU_WEATHER_API_URL}/forecasts/v1/daily/5day/${locationKey}`,
+  conditions: ( locationKey: string ) => `${ACCU_WEATHER_API_URL}/currentconditions/v1/${locationKey}`
 }
