@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Vlad-Mykhailenko-17-11-2019/static/css/main.75b098f6.chunk.css",
+    "main.js": "/Vlad-Mykhailenko-17-11-2019/static/js/main.a1a21a01.chunk.js",
+    "main.js.map": "/Vlad-Mykhailenko-17-11-2019/static/js/main.a1a21a01.chunk.js.map",
+    "runtime-main.js": "/Vlad-Mykhailenko-17-11-2019/static/js/runtime-main.2b4a3fba.js",
+    "runtime-main.js.map": "/Vlad-Mykhailenko-17-11-2019/static/js/runtime-main.2b4a3fba.js.map",
+    "static/js/2.09ab01bf.chunk.js": "/Vlad-Mykhailenko-17-11-2019/static/js/2.09ab01bf.chunk.js",
+    "static/js/2.09ab01bf.chunk.js.map": "/Vlad-Mykhailenko-17-11-2019/static/js/2.09ab01bf.chunk.js.map",
+    "index.html": "/Vlad-Mykhailenko-17-11-2019/index.html",
+    "precache-manifest.9210c9b2087d3e3f6e52c17f1f8361a4.js": "/Vlad-Mykhailenko-17-11-2019/precache-manifest.9210c9b2087d3e3f6e52c17f1f8361a4.js",
+    "service-worker.js": "/Vlad-Mykhailenko-17-11-2019/service-worker.js",
+    "static/css/main.75b098f6.chunk.css.map": "/Vlad-Mykhailenko-17-11-2019/static/css/main.75b098f6.chunk.css.map",
+    "static/media/weather.jpg": "/Vlad-Mykhailenko-17-11-2019/static/media/weather.973322d6.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2b4a3fba.js",
+    "static/js/2.09ab01bf.chunk.js",
+    "static/css/main.75b098f6.chunk.css",
+    "static/js/main.a1a21a01.chunk.js"
+  ]
+}
