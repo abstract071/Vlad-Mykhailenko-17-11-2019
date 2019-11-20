@@ -24,7 +24,13 @@ const useStyles = makeStyles( ( theme: Theme ) =>
 
 const Favorites: React.FC = () => {
   const classes = useStyles()
-  const favoritesState = useSelector( ( { favorites }: any ) => favorites )
+  const {
+    isTemperatureModeCelsius,
+    favorites
+  } = useSelector( ( { favorites, common }: any ) => ( {
+    isTemperatureModeCelsius: common.isTemperatureModeCelsius,
+    favorites
+  } ) )
   const dispatch = useDispatch()
 
   useEffect( () => {
@@ -32,7 +38,7 @@ const Favorites: React.FC = () => {
       const locationsData = localStorage.getItem( 'locationsData' )
       if ( locationsData ) {
         let parsedData: any[] = JSON.parse( locationsData )
-        dispatch( getLocationsConditions( parsedData ) )
+        dispatch( getLocationsConditions( parsedData, { isTemperatureModeCelsius } ) )
       }
     }
 
@@ -40,13 +46,14 @@ const Favorites: React.FC = () => {
   }, [] )
 
   return (
-    favoritesState.data ? (
+    favorites.data ? (
       <Grid className={ classes.favoritesContainer } container justify="center">
         {
-          favoritesState.data.map( ( conditions: any ) => (
+          favorites.data.map( ( conditions: any ) => (
             <FavoriteCard
-              key={ conditions.locationName }
+              key={ conditions.LocalizedName }
               conditions={ conditions }
+              isTemperatureModeCelsius={ isTemperatureModeCelsius }
             />
           ) )
         }

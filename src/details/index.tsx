@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import TextField from '@material-ui/core/TextField'
 import Autocomplete from '@material-ui/lab/Autocomplete'
@@ -53,13 +54,30 @@ const Details: React.FC = () => {
   const classes = useStyles()
   const [inputValue, setInputValue] = React.useState( '' )
   const [options, setOptions] = React.useState<PlaceType[]>( [] )
-  const currentLocationState = useSelector( ( { weatherDetails }: any ) => weatherDetails.currentLocation )
-  const forecastState = useSelector( ( { weatherDetails }: any ) => weatherDetails.forecast )
-  const conditionsState = useSelector( ( { weatherDetails }: any ) => weatherDetails.conditions )
+  const {
+    isTemperatureModeCelsius,
+    currentLocation,
+    forecast,
+    conditions
+  } = useSelector( ( { weatherDetails, common }: any ) => ( {
+    isTemperatureModeCelsius: common.isTemperatureModeCelsius,
+    currentLocation: weatherDetails.currentLocation,
+    forecast: weatherDetails.forecast,
+    conditions: weatherDetails.conditions
+  } ) )
+  // const forecast = useSelector( ( { weatherDetails }: any ) => weatherDetails.forecast )
+  // const conditions = useSelector( ( { weatherDetails }: any ) => weatherDetails.conditions )
   const dispatch = useDispatch()
+  const location = useLocation()
 
   useEffect( () => {
-    dispatch( getCurrentLocation( { key: defaultLocation.Key } ) )
+    if ( location.state ) {
+      dispatch( setCurrentLocation( location.state ) )
+      dispatch( getForecast( { key: location.state.Key }, { isTemperatureModeCelsius } ) )
+      dispatch( getConditions( { key: location.state.Key }, { isTemperatureModeCelsius } ) )
+    } else {
+      dispatch( getCurrentLocation( { key: defaultLocation.Key }, { isTemperatureModeCelsius } ) )
+    }
   }, [] )
 
   useEffect( () => {
@@ -103,8 +121,8 @@ const Details: React.FC = () => {
   const handleCityAccept = ( event: any, option: any ): void => {
     if ( option ) {
       dispatch( setCurrentLocation( option ) )
-      dispatch( getForecast( { key: option.Key } ) )
-      dispatch( getConditions( { key: option.Key } ) )
+      dispatch( getForecast( { key: option.Key }, { isTemperatureModeCelsius } ) )
+      dispatch( getConditions( { key: option.Key }, { isTemperatureModeCelsius } ) )
     } else {
       dispatch( clear() )
     }
@@ -115,7 +133,7 @@ const Details: React.FC = () => {
       <Grid className={ classes.autocompleteContainer } item xs={ 10 }>
         <Autocomplete
           id="autocomplete"
-          defaultValue={ defaultLocation }
+          defaultValue={ location.state || defaultLocation }
           getOptionLabel={ option => option.LocalizedName }
           filterOptions={ options => options }
           options={ options }
@@ -152,12 +170,13 @@ const Details: React.FC = () => {
         />
       </Grid>
       {
-        currentLocationState.data && forecastState.data && conditionsState.data ? (
+        currentLocation.data && forecast.data && conditions.data ? (
           <Grid item xs={ 10 }>
             <WeatherDetails
-              currentLocation={ currentLocationState.data }
-              forecast={ forecastState.data.DailyForecasts }
-              conditions={ conditionsState.data }
+              currentLocation={ currentLocation.data }
+              forecast={ forecast.data }
+              conditions={ conditions.data }
+              isTemperatureModeCelsius={ isTemperatureModeCelsius }
             />
           </Grid>
         ) : null

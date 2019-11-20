@@ -1,4 +1,4 @@
-const ACCU_WEATHER_API_URL = 'http://dataservice.accuweather.com'
+const ACCU_WEATHER_API_URL = 'https://dataservice.accuweather.com'
 
 export const api = {
   autocomplete: `${ACCU_WEATHER_API_URL}/locations/v1/cities/autocomplete`,

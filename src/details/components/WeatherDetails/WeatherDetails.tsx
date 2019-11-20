@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
@@ -17,7 +17,7 @@ import {
   Theme
 } from '@material-ui/core/styles'
 
-import weatherImg from '../../../assets/weather.jpg'
+import iconRefs from '../../../accuIcons'
 
 
 const useStyles = makeStyles( ( theme: Theme ) =>
@@ -51,9 +51,19 @@ const useStyles = makeStyles( ( theme: Theme ) =>
 const WeatherDetails: React.FC<any> = ( {
   currentLocation,
   forecast,
-  conditions
+  conditions,
+  isTemperatureModeCelsius
 }: any ) => {
   const classes = useStyles()
+  const [isFavorited, setIsFavorited] = useState( false )
+
+  useEffect( () => {
+    const locationsData = localStorage.getItem( 'locationsData' )
+    if ( locationsData ) {
+      let parsedData: any[] = JSON.parse( locationsData )
+      setIsFavorited( parsedData.some( ( location: any ) => currentLocation.LocalizedName === location.locationName ) )
+    }
+  }, [currentLocation] )
 
   const handleAddToFavoritesClick = () => {
     const locationsData = localStorage.getItem( 'locationsData' )
@@ -63,7 +73,13 @@ const WeatherDetails: React.FC<any> = ( {
     }
     if ( locationsData ) {
       let parsedData: any[] = JSON.parse( locationsData )
-      parsedData.push( dataToSave )
+      if ( isFavorited ) {
+        parsedData.splice( parsedData.findIndex( ( location: any ) => currentLocation.LocalizedName === location.locationName ), 1 )
+        setIsFavorited( false )
+      } else {
+        parsedData.push( dataToSave )
+        setIsFavorited( true )
+      }
       localStorage.setItem( 'locationsData', JSON.stringify( parsedData ) )
     } else {
       localStorage.setItem( 'locationsData', JSON.stringify( [dataToSave] ) )
@@ -79,7 +95,8 @@ const WeatherDetails: React.FC<any> = ( {
               className={ classes.cardMedia }
               component="img"
               alt="Some img"
-              image={ weatherImg }
+              // @ts-ignore
+              image={ iconRefs[conditions.WeatherIcon] }
               title="Some img"
             />
             <CardContent className={ classes.cardContent }>
@@ -87,19 +104,23 @@ const WeatherDetails: React.FC<any> = ( {
                 { currentLocation.LocalizedName }
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
-                { `${conditions.Temperature.Metric.Value} C` }
+                {
+                  isTemperatureModeCelsius
+                    ? `${conditions.Temperature.Metric.Value} C`
+                    : `${conditions.Temperature.Metric.ValueF} F`
+                }
               </Typography>
             </CardContent>
           </Card>
           <Box>
             <Button
               variant="contained"
-              color="secondary"
+              color={ isFavorited ? 'inherit' : 'secondary' }
               size="large"
-              startIcon={ <FavoriteIcon /> }
+              startIcon={ <FavoriteIcon color={ isFavorited ? 'disabled' : 'inherit' } /> }
               onClick={ handleAddToFavoritesClick }
             >
-              Add to Favorites
+              { isFavorited ? 'Remove from Favorites' : 'Add to Favorites' }
             </Button>
           </Box>
         </Grid>
@@ -114,6 +135,7 @@ const WeatherDetails: React.FC<any> = ( {
               <DailyWeatherCard
                 key={ `forecast_${index}` }
                 forecast={ dayForecast }
+                isTemperatureModeCelsius={ isTemperatureModeCelsius }
               />
             ) )
           }

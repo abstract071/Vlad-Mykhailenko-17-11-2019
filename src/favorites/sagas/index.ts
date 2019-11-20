@@ -22,8 +22,16 @@ export function* getLocationsConditionsSaga( action: any ) {
     }
     const allArgs = action.payload.reduce( ( acc: any, cur: any ) => ( { ...acc, [cur.locationName]: call( axios.get, api.conditions( cur.locationKey ), config ) } ), {} )
     const responses = yield all( allArgs )
-    const transformedResponses = action.payload.map( ( { locationName }: any ) => ( { locationName, ...responses[locationName].data[0] } ) )
-    yield put( { type: favoritesTypes.GET_LOCATIONS_CONDITIONS_SUCCESS, payload: transformedResponses } )
+    const transformedResponses = action.payload.map( ( { locationName, locationKey }: any ) => ( { LocalizedName: locationName, Key: locationKey, ...responses[locationName].data[0] } ) )
+    yield put( { type: favoritesTypes.GET_LOCATIONS_CONDITIONS_SUCCESS, payload: transformedResponses.map( ( conditions: any ) => ( {
+      ...conditions,
+      Temperature: {
+        Metric: {
+          ...conditions.Temperature.Metric,
+          ValueF: ( ( conditions.Temperature.Metric.Value * 1.8 ) + 32 )
+        }
+      }
+    } ) ) } )
   } catch ( error ) {
     if ( error.response ) {
       yield put( { type: favoritesTypes.GET_LOCATIONS_CONDITIONS_FAILURE, payload: error.response.data } )

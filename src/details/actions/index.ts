@@ -1,10 +1,11 @@
 import * as weatherDetailsTypes from '../constants'
 
 
-export function getCurrentLocation( payload: any ) {
+export function getCurrentLocation( payload: any, meta: any ) {
   return {
     type: weatherDetailsTypes.GET_CURRENT_LOCATION_TRIGGER,
-    payload
+    payload,
+    meta
   }
 }
 
@@ -15,17 +16,19 @@ export function setCurrentLocation( payload: any ) {
   }
 }
 
-export function getForecast( payload: any ) {
+export function getForecast( payload: any, meta: any ) {
   return {
     type: weatherDetailsTypes.GET_FORECAST_TRIGGER,
-    payload
+    payload,
+    meta
   }
 }
 
-export function getConditions( payload: any ) {
+export function getConditions( payload: any, meta: any ) {
   return {
     type: weatherDetailsTypes.GET_CONDITIONS_TRIGGER,
-    payload
+    payload,
+    meta
   }
 }
 

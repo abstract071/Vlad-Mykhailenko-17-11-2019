@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link, LinkProps } from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -8,6 +9,8 @@ import ButtonGroup from '@material-ui/core/ButtonGroup'
 import IconButton from '@material-ui/core/IconButton'
 import Brightness6TwoToneIcon from '@material-ui/icons/Brightness6TwoTone'
 import AcUnitTwoToneIcon from '@material-ui/icons/AcUnitTwoTone'
+
+import { setIsTemperatureModeCelsius } from '../../actions'
 
 import {
   createStyles,
@@ -32,13 +35,22 @@ const useStyles = makeStyles( ( theme: Theme ) =>
       flexGrow: 1
     },
     iconButton: {
-      marginRight: theme.spacing( 1 )
+      margin: theme.spacing( 0 ),
+      '&:last-of-type': {
+        marginRight: theme.spacing( 2 )
+      }
     }
   } ),
 )
 
 const Header: React.FC = () => {
   const classes = useStyles()
+  const isTemperatureModeCelsius = useSelector<any, any>( ( { common }: any ) => common.isTemperatureModeCelsius )
+  const dispatch = useDispatch()
+
+  const handleTemperatureModeChange = () => {
+    dispatch( setIsTemperatureModeCelsius( { isTemperatureModeCelsius: !isTemperatureModeCelsius } ) )
+  }
 
   return (
     <div className={ classes.headerRoot }>
@@ -50,8 +62,11 @@ const Header: React.FC = () => {
           <IconButton disabled className={ classes.iconButton }>
             <Brightness6TwoToneIcon />
           </IconButton>
-          <IconButton disabled className={ classes.iconButton }>
-            <AcUnitTwoToneIcon />
+          <IconButton
+            className={ classes.iconButton }
+            onClick={ handleTemperatureModeChange }
+          >
+            <AcUnitTwoToneIcon color={ 'secondary' } />
           </IconButton>
           <ButtonGroup
             variant="contained"
