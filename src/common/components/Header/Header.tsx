@@ -7,8 +7,8 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import IconButton from '@material-ui/core/IconButton'
-import Brightness6TwoToneIcon from '@material-ui/icons/Brightness6TwoTone'
-import AcUnitTwoToneIcon from '@material-ui/icons/AcUnitTwoTone'
+// import Brightness6TwoToneIcon from '@material-ui/icons/Brightness6TwoTone'
+// import AcUnitTwoToneIcon from '@material-ui/icons/AcUnitTwoTone'
 
 import { setIsTemperatureModeCelsius } from '../../actions'
 
@@ -36,6 +36,11 @@ const useStyles = makeStyles( ( theme: Theme ) =>
     },
     iconButton: {
       margin: theme.spacing( 0 ),
+      width: 50,
+      height: 50,
+      color: 'white',
+      fontSize: 14,
+      border: '1px solid white',
       '&:last-of-type': {
         marginRight: theme.spacing( 2 )
       }
@@ -59,14 +64,15 @@ const Header: React.FC = () => {
           <Typography variant="h6" className={ classes.title }>
             Herolo Weather Task
           </Typography>
-          <IconButton disabled className={ classes.iconButton }>
-            <Brightness6TwoToneIcon />
-          </IconButton>
+          { /*<IconButton disabled className={ classes.iconButton }>*/ }
+          { /*  <Brightness6TwoToneIcon />*/ }
+          { /*</IconButton>*/ }
           <IconButton
             className={ classes.iconButton }
             onClick={ handleTemperatureModeChange }
           >
-            <AcUnitTwoToneIcon color={ 'secondary' } />
+            { /*<AcUnitTwoToneIcon color={ 'secondary' } />*/ }
+            { isTemperatureModeCelsius ? 'C\u00b0' : 'F\u00b0' }
           </IconButton>
           <ButtonGroup
             variant="contained"

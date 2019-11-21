@@ -5,6 +5,7 @@ import {
   Route
 } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import { CssBaseline } from '@material-ui/core'
 
 import { configureStore } from './config/configureStore'
 import { runSaga } from './config/combineMiddlewares'
@@ -23,6 +24,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <Provider store={ store }>
+        <CssBaseline />
         <Header />
         <Switch>
           <Route exact path="/" component={ Details } />

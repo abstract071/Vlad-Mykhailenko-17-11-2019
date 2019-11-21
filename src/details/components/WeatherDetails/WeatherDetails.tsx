@@ -44,6 +44,13 @@ const useStyles = makeStyles( ( theme: Theme ) =>
       '&:last-child': {
         paddingBottom: theme.spacing( 1 )
       }
+    },
+    dailyForecastItem: {
+      border: 'none',
+      borderRight: '1px solid lightgray',
+      '&:first-of-type': {
+        borderLeft: '1px solid lightgray'
+      }
     }
   } )
 )
@@ -129,14 +136,15 @@ const WeatherDetails: React.FC<any> = ( {
             { conditions.WeatherText }
           </Typography>
         </Grid>
-        <Grid className={ classes.weatherDetailsGridItem } item container xs={ 5 } justify="space-around" alignItems="center">
+        <Grid className={ classes.weatherDetailsGridItem } item container xs={ 5 } justify="center">
           {
             forecast.map( ( dayForecast: any, index: number ) => (
-              <DailyWeatherCard
-                key={ `forecast_${index}` }
-                forecast={ dayForecast }
-                isTemperatureModeCelsius={ isTemperatureModeCelsius }
-              />
+              <Grid className={ classes.dailyForecastItem } item xs={ 2 } key={ `forecast_${index}` }>
+                <DailyWeatherCard
+                  forecast={ dayForecast }
+                  isTemperatureModeCelsius={ isTemperatureModeCelsius }
+                />
+              </Grid>
             ) )
           }
         </Grid>

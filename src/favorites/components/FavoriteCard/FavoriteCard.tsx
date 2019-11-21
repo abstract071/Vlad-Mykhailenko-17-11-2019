@@ -17,8 +17,11 @@ import iconRefs from '../../../accuIcons'
 const useStyles = makeStyles( ( theme: Theme ) =>
   createStyles( {
     favoriteCard: {
+      width: 150,
+      height: 200,
       margin: theme.spacing( 1 ),
-      cursor: 'pointer'
+      cursor: 'pointer',
+      justifyContent: 'center'
     },
     favoriteCardContent: {
       textAlign: 'center',

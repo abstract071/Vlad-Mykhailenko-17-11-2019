@@ -28,7 +28,8 @@ export function* getLocationsConditionsSaga( action: any ) {
       Temperature: {
         Metric: {
           ...conditions.Temperature.Metric,
-          ValueF: ( ( conditions.Temperature.Metric.Value * 1.8 ) + 32 )
+          Value: Math.round( conditions.Temperature.Metric.Value ),
+          ValueF: Math.round( ( conditions.Temperature.Metric.Value * 1.8 ) + 32 )
         }
       }
     } ) ) } )

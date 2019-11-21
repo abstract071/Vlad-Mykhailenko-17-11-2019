@@ -17,6 +17,10 @@ import {
 
 const useStyles = makeStyles( ( theme: Theme ) =>
   createStyles( {
+    dailyForecastCard: {
+      border: 'none',
+      boxShadow: 'none'
+    },
     dailyForecastCardContent: {
       display: 'flex',
       flexDirection: 'column',
@@ -38,7 +42,7 @@ const DailyWeatherCard: React.FC<any> = ( { forecast, isTemperatureModeCelsius }
   const classes = useStyles()
 
   return (
-    <Card>
+    <Card className={ classes.dailyForecastCard }>
       <CardContent className={ classes.dailyForecastCardContent }>
         <Typography variant="h6">
           { moment( forecast.Date ).format( 'ddd' ) }

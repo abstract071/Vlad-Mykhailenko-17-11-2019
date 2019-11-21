@@ -58,11 +58,13 @@ export function* getForecastSaga( action: any ) {
       Temperature: {
         Minimum: {
           ...DailyForecast.Temperature.Minimum,
-          ValueF: ( ( DailyForecast.Temperature.Minimum.Value * 1.8 ) + 32 )
+          Value: Math.round( DailyForecast.Temperature.Minimum.Value ),
+          ValueF: Math.round( ( DailyForecast.Temperature.Minimum.Value * 1.8 ) + 32 )
         },
         Maximum: {
           ...DailyForecast.Temperature.Maximum,
-          ValueF: ( ( DailyForecast.Temperature.Minimum.Value * 1.8 ) + 32 )
+          Value: Math.round( DailyForecast.Temperature.Maximum.Value ),
+          ValueF: Math.round( ( DailyForecast.Temperature.Minimum.Value * 1.8 ) + 32 )
         }
       }
     } ) )
@@ -95,7 +97,8 @@ export function* getConditionsSaga( action: any ) {
       Temperature: {
         Metric: {
           ...response.data[0].Temperature.Metric,
-          ValueF: ( ( response.data[0].Temperature.Metric.Value * 1.8 ) + 32 )
+          Value: Math.round( response.data[0].Temperature.Metric.Value ),
+          ValueF: Math.round( ( response.data[0].Temperature.Metric.Value * 1.8 ) + 32 )
         }
       }
     } } )
