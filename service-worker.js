@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Vlad-Mykhailenko-17-11-2019/precache-manifest.039bdb84b2949610e355c8145b97c580.js"
+  "/Vlad-Mykhailenko-17-11-2019/precache-manifest.316fadfa20ac15f5a999778c7a1e9fa5.js"
 );
 
 self.addEventListener('message', (event) => {
