@@ -20,12 +20,14 @@ const useStyles = makeStyles( ( theme: Theme ) =>
       width: 150,
       height: 200,
       margin: theme.spacing( 1 ),
-      cursor: 'pointer',
-      justifyContent: 'center'
+      cursor: 'pointer'
     },
     favoriteCardContent: {
       textAlign: 'center',
       padding: theme.spacing( 2 ),
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
       '&:last-child': {
         paddingBottom: theme.spacing( 2 )
       }

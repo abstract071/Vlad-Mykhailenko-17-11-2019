@@ -22,7 +22,7 @@ runSaga()
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <Router basename="/Vlad-Mykhailenko-17-11-2019">
       <Provider store={ store }>
         <CssBaseline />
         <Header />
